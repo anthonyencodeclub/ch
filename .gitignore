@@ -1,6 +1,7 @@
 bin/
 dist/
 .tools/
+/ch
 *.exe
 *.test
 *.out
