@@ -42,6 +42,7 @@ type CLI struct {
 	PSC        PSCCmd        `cmd:"" help:"Persons with significant control"`
 	Charges    ChargesCmd    `cmd:"" help:"Company charges (mortgages/securities)"`
 	Insolvency InsolvencyCmd `cmd:"" help:"Insolvency information"`
+	File       FileCmd       `cmd:"" help:"File changes (registered address, email) — requires OAuth2 login"`
 	VersionCmd VersionCmd    `cmd:"" name:"version" help:"Print version"`
 }
 

@@ -13,6 +13,13 @@ type File struct {
 	APIKey         string `json:"api_key,omitempty"`
 	DefaultCompany string `json:"default_company,omitempty"`
 	CompanyName    string `json:"company_name,omitempty"`
+
+	// OAuth2 credentials for API Filing
+	OAuthClientID     string `json:"oauth_client_id,omitempty"`
+	OAuthClientSecret string `json:"oauth_client_secret,omitempty"`
+	OAuthAccessToken  string `json:"oauth_access_token,omitempty"`
+	OAuthRefreshToken string `json:"oauth_refresh_token,omitempty"`
+	OAuthTokenExpiry  string `json:"oauth_token_expiry,omitempty"`
 }
 
 // Dir returns the configuration directory.
