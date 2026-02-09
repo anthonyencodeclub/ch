@@ -33,6 +33,17 @@ func New(apiKey string) *Client {
 	}
 }
 
+// NewWithBaseURL creates a client with a custom base URL (useful for testing).
+func NewWithBaseURL(apiKey, base string) *Client {
+	return &Client{
+		apiKey: apiKey,
+		httpClient: &http.Client{
+			Timeout: 30 * time.Second,
+		},
+		baseURL: base,
+	}
+}
+
 // doRequest performs an authenticated GET request with retries.
 func (c *Client) doRequest(ctx context.Context, path string, query url.Values) ([]byte, error) {
 	u := c.baseURL + path

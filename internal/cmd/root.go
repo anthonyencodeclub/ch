@@ -34,6 +34,7 @@ type CLI struct {
 	Version    kong.VersionFlag `help:"Print version and exit"`
 
 	Auth       AuthCmd       `cmd:"" help:"Manage API key authentication"`
+	Setup      SetupCmd      `cmd:"" help:"Set up a new company (interactive guided flow)"`
 	Company    CompanyCmd    `cmd:"" help:"Company profile and registered office"`
 	Search     SearchCmd     `cmd:"" help:"Search companies, officers, and disqualified officers"`
 	Officers   OfficersCmd   `cmd:"" help:"List and view company officers"`

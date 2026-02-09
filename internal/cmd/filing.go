@@ -18,20 +18,24 @@ type FilingCmd struct {
 
 // FilingListCmd lists filing history.
 type FilingListCmd struct {
-	CompanyNumber string `arg:"" help:"Company number"`
+	CompanyNumber string `arg:"" optional:"" help:"Company number (uses default if omitted)"`
 	Category      string `help:"Filter by category (e.g. accounts, confirmation-statement)" default:""`
 	ItemsPerPage  int    `help:"Results per page" default:"25"`
 	StartIndex    int    `help:"Start index for pagination" default:"0"`
 }
 
 func (c *FilingListCmd) Run(ctx context.Context) error {
+	cn, err := resolveCompanyNumber(c.CompanyNumber)
+	if err != nil {
+		return err
+	}
 	apiKey, err := config.APIKey()
 	if err != nil {
 		return err
 	}
 
 	client := chapi.New(apiKey)
-	result, err := client.ListFilingHistory(ctx, c.CompanyNumber, c.Category, c.ItemsPerPage, c.StartIndex)
+	result, err := client.ListFilingHistory(ctx, cn, c.Category, c.ItemsPerPage, c.StartIndex)
 	if err != nil {
 		return fmt.Errorf("list filings: %w", err)
 	}

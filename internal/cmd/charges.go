@@ -17,19 +17,23 @@ type ChargesCmd struct {
 
 // ChargesListCmd lists charges for a company.
 type ChargesListCmd struct {
-	CompanyNumber string `arg:"" help:"Company number"`
+	CompanyNumber string `arg:"" optional:"" help:"Company number (uses default if omitted)"`
 	ItemsPerPage  int    `help:"Results per page" default:"25"`
 	StartIndex    int    `help:"Start index for pagination" default:"0"`
 }
 
 func (c *ChargesListCmd) Run(ctx context.Context) error {
+	cn, err := resolveCompanyNumber(c.CompanyNumber)
+	if err != nil {
+		return err
+	}
 	apiKey, err := config.APIKey()
 	if err != nil {
 		return err
 	}
 
 	client := chapi.New(apiKey)
-	result, err := client.ListCharges(ctx, c.CompanyNumber, c.ItemsPerPage, c.StartIndex)
+	result, err := client.ListCharges(ctx, cn, c.ItemsPerPage, c.StartIndex)
 	if err != nil {
 		return fmt.Errorf("list charges: %w", err)
 	}

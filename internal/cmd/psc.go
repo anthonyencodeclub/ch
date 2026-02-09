@@ -18,19 +18,23 @@ type PSCCmd struct {
 
 // PSCListCmd lists PSCs for a company.
 type PSCListCmd struct {
-	CompanyNumber string `arg:"" help:"Company number"`
+	CompanyNumber string `arg:"" optional:"" help:"Company number (uses default if omitted)"`
 	ItemsPerPage  int    `help:"Results per page" default:"25"`
 	StartIndex    int    `help:"Start index for pagination" default:"0"`
 }
 
 func (c *PSCListCmd) Run(ctx context.Context) error {
+	cn, err := resolveCompanyNumber(c.CompanyNumber)
+	if err != nil {
+		return err
+	}
 	apiKey, err := config.APIKey()
 	if err != nil {
 		return err
 	}
 
 	client := chapi.New(apiKey)
-	result, err := client.ListPSCs(ctx, c.CompanyNumber, c.ItemsPerPage, c.StartIndex)
+	result, err := client.ListPSCs(ctx, cn, c.ItemsPerPage, c.StartIndex)
 	if err != nil {
 		return fmt.Errorf("list PSCs: %w", err)
 	}

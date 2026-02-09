@@ -19,17 +19,21 @@ type CompanyCmd struct {
 
 // CompanyGetCmd retrieves a company profile.
 type CompanyGetCmd struct {
-	CompanyNumber string `arg:"" help:"Company number (e.g. 00445790)"`
+	CompanyNumber string `arg:"" optional:"" help:"Company number (uses default if omitted)"`
 }
 
 func (c *CompanyGetCmd) Run(ctx context.Context) error {
+	cn, err := resolveCompanyNumber(c.CompanyNumber)
+	if err != nil {
+		return err
+	}
 	apiKey, err := config.APIKey()
 	if err != nil {
 		return err
 	}
 
 	client := chapi.New(apiKey)
-	profile, err := client.GetCompany(ctx, c.CompanyNumber)
+	profile, err := client.GetCompany(ctx, cn)
 	if err != nil {
 		return fmt.Errorf("get company: %w", err)
 	}
@@ -73,17 +77,21 @@ func (c *CompanyGetCmd) Run(ctx context.Context) error {
 
 // CompanyAddressCmd retrieves the registered office address.
 type CompanyAddressCmd struct {
-	CompanyNumber string `arg:"" help:"Company number"`
+	CompanyNumber string `arg:"" optional:"" help:"Company number (uses default if omitted)"`
 }
 
 func (c *CompanyAddressCmd) Run(ctx context.Context) error {
+	cn, err := resolveCompanyNumber(c.CompanyNumber)
+	if err != nil {
+		return err
+	}
 	apiKey, err := config.APIKey()
 	if err != nil {
 		return err
 	}
 
 	client := chapi.New(apiKey)
-	addr, err := client.GetRegisteredOffice(ctx, c.CompanyNumber)
+	addr, err := client.GetRegisteredOffice(ctx, cn)
 	if err != nil {
 		return fmt.Errorf("get address: %w", err)
 	}

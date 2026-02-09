@@ -10,7 +10,9 @@ import (
 
 // File holds the CLI configuration.
 type File struct {
-	APIKey string `json:"api_key,omitempty"`
+	APIKey         string `json:"api_key,omitempty"`
+	DefaultCompany string `json:"default_company,omitempty"`
+	CompanyName    string `json:"company_name,omitempty"`
 }
 
 // Dir returns the configuration directory.

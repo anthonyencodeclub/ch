@@ -17,17 +17,21 @@ type InsolvencyCmd struct {
 
 // InsolvencyGetCmd retrieves insolvency data.
 type InsolvencyGetCmd struct {
-	CompanyNumber string `arg:"" help:"Company number"`
+	CompanyNumber string `arg:"" optional:"" help:"Company number (uses default if omitted)"`
 }
 
 func (c *InsolvencyGetCmd) Run(ctx context.Context) error {
+	cn, err := resolveCompanyNumber(c.CompanyNumber)
+	if err != nil {
+		return err
+	}
 	apiKey, err := config.APIKey()
 	if err != nil {
 		return err
 	}
 
 	client := chapi.New(apiKey)
-	result, err := client.GetInsolvency(ctx, c.CompanyNumber)
+	result, err := client.GetInsolvency(ctx, cn)
 	if err != nil {
 		return fmt.Errorf("get insolvency: %w", err)
 	}

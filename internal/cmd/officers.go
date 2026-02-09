@@ -17,19 +17,23 @@ type OfficersCmd struct {
 
 // OfficersListCmd lists officers for a company.
 type OfficersListCmd struct {
-	CompanyNumber string `arg:"" help:"Company number"`
+	CompanyNumber string `arg:"" optional:"" help:"Company number (uses default if omitted)"`
 	ItemsPerPage  int    `help:"Results per page" default:"50"`
 	StartIndex    int    `help:"Start index for pagination" default:"0"`
 }
 
 func (c *OfficersListCmd) Run(ctx context.Context) error {
+	cn, err := resolveCompanyNumber(c.CompanyNumber)
+	if err != nil {
+		return err
+	}
 	apiKey, err := config.APIKey()
 	if err != nil {
 		return err
 	}
 
 	client := chapi.New(apiKey)
-	result, err := client.ListOfficers(ctx, c.CompanyNumber, c.ItemsPerPage, c.StartIndex)
+	result, err := client.ListOfficers(ctx, cn, c.ItemsPerPage, c.StartIndex)
 	if err != nil {
 		return fmt.Errorf("list officers: %w", err)
 	}
