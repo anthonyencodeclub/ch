@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/openclaw/ch/internal/outfmt"
+	"github.com/anthonyencodeclub/ch/internal/outfmt"
 )
 
 var (

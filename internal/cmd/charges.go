@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/openclaw/ch/internal/chapi"
-	"github.com/openclaw/ch/internal/config"
-	"github.com/openclaw/ch/internal/outfmt"
+	"github.com/anthonyencodeclub/ch/internal/chapi"
+	"github.com/anthonyencodeclub/ch/internal/config"
+	"github.com/anthonyencodeclub/ch/internal/outfmt"
 )
 
 // ChargesCmd retrieves company charges.

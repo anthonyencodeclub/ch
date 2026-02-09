@@ -17,12 +17,12 @@ Fast, script-friendly CLI for the [Companies House API](https://developer.compan
 ### From source
 
 ```bash
-go install github.com/openclaw/ch/cmd/ch@latest
+go install github.com/anthonyencodeclub/ch/cmd/ch@latest
 ```
 
 ### From releases
 
-Download the latest binary from [Releases](https://github.com/openclaw/ch/releases).
+Download the latest binary from [Releases](https://github.com/anthonyencodeclub/ch/releases).
 
 ## Quick start
 

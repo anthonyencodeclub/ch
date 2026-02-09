@@ -11,9 +11,9 @@ builds:
     binary: ch
     ldflags: >-
       -s -w
-      -X github.com/openclaw/ch/internal/cmd.version={{ .Tag }}
-      -X github.com/openclaw/ch/internal/cmd.commit={{ .ShortCommit }}
-      -X github.com/openclaw/ch/internal/cmd.date={{ .Date }}
+      -X github.com/anthonyencodeclub/ch/internal/cmd.version={{ .Tag }}
+      -X github.com/anthonyencodeclub/ch/internal/cmd.commit={{ .ShortCommit }}
+      -X github.com/anthonyencodeclub/ch/internal/cmd.date={{ .Date }}
     env:
       - CGO_ENABLED=0
     targets:

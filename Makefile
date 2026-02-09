@@ -11,7 +11,7 @@ CMD := ./cmd/ch
 VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 COMMIT := $(shell git rev-parse --short=12 HEAD 2>/dev/null || echo "")
 DATE := $(shell date -u +%Y-%m-%dT%H:%M:%SZ)
-LDFLAGS := -X github.com/openclaw/ch/internal/cmd.version=$(VERSION) -X github.com/openclaw/ch/internal/cmd.commit=$(COMMIT) -X github.com/openclaw/ch/internal/cmd.date=$(DATE)
+LDFLAGS := -X github.com/anthonyencodeclub/ch/internal/cmd.version=$(VERSION) -X github.com/anthonyencodeclub/ch/internal/cmd.commit=$(COMMIT) -X github.com/anthonyencodeclub/ch/internal/cmd.date=$(DATE)
 
 TOOLS_DIR := $(CURDIR)/.tools
 GOLANGCI_LINT := $(TOOLS_DIR)/golangci-lint

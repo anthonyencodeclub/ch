@@ -1,4 +1,4 @@
-module github.com/openclaw/ch
+module github.com/anthonyencodeclub/ch
 
 go 1.25
 

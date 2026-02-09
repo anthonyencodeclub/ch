@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/openclaw/ch/internal/cmd"
+	"github.com/anthonyencodeclub/ch/internal/cmd"
 )
 
 func main() {

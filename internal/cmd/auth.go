@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/openclaw/ch/internal/config"
-	"github.com/openclaw/ch/internal/outfmt"
-	"github.com/openclaw/ch/internal/ui"
+	"github.com/anthonyencodeclub/ch/internal/config"
+	"github.com/anthonyencodeclub/ch/internal/outfmt"
+	"github.com/anthonyencodeclub/ch/internal/ui"
 )
 
 // AuthCmd manages API key authentication.

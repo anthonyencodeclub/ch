@@ -9,9 +9,9 @@ import (
 
 	"github.com/alecthomas/kong"
 
-	"github.com/openclaw/ch/internal/errfmt"
-	"github.com/openclaw/ch/internal/outfmt"
-	"github.com/openclaw/ch/internal/ui"
+	"github.com/anthonyencodeclub/ch/internal/errfmt"
+	"github.com/anthonyencodeclub/ch/internal/outfmt"
+	"github.com/anthonyencodeclub/ch/internal/ui"
 )
 
 const (
